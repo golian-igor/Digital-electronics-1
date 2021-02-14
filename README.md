@@ -1,6 +1,6 @@
 # Digital-electronics-1
 
-## ***My labs***
+## ***My Labs***
 
 #### Links
 [GitHub Pages](https://pages.github.com/)
