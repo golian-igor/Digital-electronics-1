@@ -1,7 +1,7 @@
 # Digital-electronics-1
 
 ## ***My labs***
-
+## Alt-LABS
 
 #### Links
 [GitHub Pages](https://pages.github.com/)
