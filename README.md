@@ -1,6 +1,7 @@
 # Digital-electronics-1
 
-## Labs
+## Alt-H1 Labs
+
 
 ### Links
 [GitHub Pages](https://pages.github.com/).
