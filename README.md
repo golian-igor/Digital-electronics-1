@@ -5,6 +5,8 @@
 #### Links
 [GitHub Pages](https://pages.github.com/)
 
+![GitHub Logo](/images/logo.png)
+
 **Source code**
 
 ```vhdl
