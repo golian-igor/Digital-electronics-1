@@ -4,6 +4,7 @@
 
 #### Links
 [GitHub Pages](https://pages.github.com/)
+[Git Manuals](https://pages.github.com/)
 
 **Source code**
 
