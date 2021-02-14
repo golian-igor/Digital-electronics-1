@@ -1,4 +1,4 @@
-# Digital-electronics-1
+# Alt-Digital-electronics-1
 
 ## ***My labs***
 
