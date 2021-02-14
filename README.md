@@ -7,7 +7,7 @@
 
 [GitHub Manuals](https://medium.com/swlh/how-to-make-the-perfect-readme-md-on-github-92ed5771c061)
 
-**Source code**
+**Source code:**
 
 ```vhdl
 f_o     <= (not b_i and a_i) or (not c_i and not b_i);
