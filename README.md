@@ -13,7 +13,7 @@
 ![alt text](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Logo Title Text 1")
 
 ### Table
-| **c** | **b** |**a** | **f(c,b,a)** |
+| **Sports** | **b** |**a** | **f(c,b,a)** |
 | :-: | :-: | :-: | :-: |
 | 0 | 0 | 0 | 1 |
 | 0 | 0 | 1 | 2 |
