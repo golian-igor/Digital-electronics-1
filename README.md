@@ -10,9 +10,7 @@
 [GitHub Manuals](https://medium.com/swlh/how-to-make-the-perfect-readme-md-on-github-92ed5771c061)
 
 ### Images:
-![alt text](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Logo Title Text 1")
 ![alt text](https://g.denik.cz/50/08/brno-vut-vysoke-uceni-technicke_denik-320-16x9.jpg "Logo Title Text 1")
-
 
 ### Table:
 | **a** | **b** |**c** |
