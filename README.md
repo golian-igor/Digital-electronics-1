@@ -11,7 +11,7 @@
 ![alt text](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Logo Title Text 1")
 
 
-**VHDL Source code:**
+### VHDL Source code:
 
 ```vhdl
 f_o     <= (not b_i and a_i) or (not c_i and not b_i);
