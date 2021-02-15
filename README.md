@@ -13,11 +13,11 @@
 ![alt text](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Logo Title Text 1")
 
 ### Table
-| **a** | **b** |**c** | **f** |
-| :-: | :-: | :-: | :-: |
-| 0 | 0 | 0 | 1 |
-| 0 | 0 | 1 | 2 |
-| 0 | 1 | 0 | 2 |
+| **a** | **b** |**c** |
+| :-: | :-: | :-: |
+| 1 | 0 | 0 |
+| 0 | 1 | 0 |
+| 0 | 0 | 1 | 
 ### VHDL Source code:
 
 ```vhdl
