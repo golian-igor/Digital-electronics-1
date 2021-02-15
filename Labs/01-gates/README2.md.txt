@@ -1,7 +1,7 @@
 # 01-gates
 
 ## My Github
-[EDA](https://github.com/golian-igor/Digital-electronics-1.git/)
+(https://github.com/golian-igor/Digital-electronics-1.git/)
 
 ### 1)De Morgan's laws
 
