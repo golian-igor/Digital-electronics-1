@@ -5,6 +5,7 @@
 ### Emphasis:
 *Welcome to Github* <BR>
 **Welcome to Github**<BR>
+**asterisks and _underscores_**
 ~~Welcome to Github.~~
 
 ### Links:
