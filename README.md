@@ -11,6 +11,8 @@
 
 ### Images:
 ![alt text](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Logo Title Text 1")
+![alt text](https://www.designportal.cz/wp-content/uploads/2015/10/vut_brno_00-810x554.jpg "Logo Title Text 1")
+
 
 ### Table:
 | **a** | **b** |**c** |
