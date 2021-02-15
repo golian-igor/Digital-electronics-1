@@ -5,7 +5,7 @@
 ### Emphasis:
 *Welcome to Github* <BR>
 **Welcome to Github**<BR>
-~~Welcome to Github.~~
+~~Welcome to Github~~
 
 ### Links:
 [GitHub Pages](https://pages.github.com/)
