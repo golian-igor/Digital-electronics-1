@@ -11,7 +11,7 @@
 
 ### Images:
 ![alt text](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Logo Title Text 1")
-![alt text](https://www.designportal.cz/wp-content/uploads/2015/10/vut_brno_00-600x315-cropped.jpg "Logo Title Text 1")
+![alt text](https://g.denik.cz/50/08/brno-vut-vysoke-uceni-technicke_denik-320-16x9.jpg "Logo Title Text 1")
 
 
 ### Table:
