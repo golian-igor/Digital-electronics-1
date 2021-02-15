@@ -2,17 +2,17 @@
 
 ## ***My Labs***
 
-### Emphasis
+### Emphasis:
 
-### Links
+### Links:
 [GitHub Pages](https://pages.github.com/)
 
 [GitHub Manuals](https://medium.com/swlh/how-to-make-the-perfect-readme-md-on-github-92ed5771c061)
 
-### Images
+### Images:
 ![alt text](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Logo Title Text 1")
 
-### Table
+### Table:
 | **a** | **b** |**c** |
 | :-: | :-: | :-: |
 | 1 | 0 | 0 |
