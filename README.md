@@ -3,6 +3,9 @@
 ## ***My Labs***
 
 ### Emphasis:
+*Welcome to Github*
+**Welcome to Github**
+~~Welcome to Github.~~
 
 ### Links:
 [GitHub Pages](https://pages.github.com/)
