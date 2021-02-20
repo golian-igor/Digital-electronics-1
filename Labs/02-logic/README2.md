@@ -32,6 +32,7 @@
 ![Functions](images/funkce2.png)
 
 #### EDA playground link:
+https://www.edaplayground.com/x/nu76
 
 ### 3) 4-bit comparator
 
