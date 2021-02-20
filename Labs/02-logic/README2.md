@@ -26,6 +26,7 @@
 ### 2) 2-Bit comparator
 
 #### Karnaugh maps:
+![Tables](images/tabulky.png)
 
 #### Equations SoP and PoS:
 
