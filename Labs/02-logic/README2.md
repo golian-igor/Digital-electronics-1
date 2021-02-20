@@ -1,4 +1,4 @@
-# 01-logic
+# 02-logic
 
 ### 1)Truth bable
 
