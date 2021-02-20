@@ -21,6 +21,8 @@
 | 14 | 1 1 | 1 0 | 1 | 0 | 0 |
 | 15 | 1 1 | 1 1 | 0 | 1 | 0 |
 
+![Functions](images/funkce.png)
+
 ### 2) 2-Bit comparator
 
 #### Karnaugh maps:
