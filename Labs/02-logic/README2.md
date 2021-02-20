@@ -29,6 +29,7 @@
 ![Tables](images/tabulky.png)
 
 #### Equations SoP and PoS:
+![Functions](images/funkce2.png)
 
 #### EDA playground link:
 
