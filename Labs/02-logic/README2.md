@@ -35,6 +35,7 @@ https://www.edaplayground.com/x/nu76
 ### 3) 4-bit comparator
 
 #### VHDL architecture from design file:
+```vhdl
 ------------------------------------------------------------------------
 -- Entity declaration for 2-bit binary comparator
 ------------------------------------------------------------------------
@@ -67,6 +68,7 @@ begin
 
 
 end architecture Behavioral;
+```
 
 #### VHDL stimulus process from testbench file:
 
