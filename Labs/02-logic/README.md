@@ -1,6 +1,6 @@
 # 02-logic
 
-### 1)Truth bable
+## 1)Truth bable
 
 | **Dec. equivalent** | **B[1:0]** | **A[1:0]** | **B is greater than A** | **B equals A** | **B is less than A** |
 | :-: | :-: | :-: | :-: | :-: | :-: |
@@ -21,20 +21,20 @@
 | 14 | 1 1 | 1 0 | 1 | 0 | 0 |
 | 15 | 1 1 | 1 1 | 0 | 1 | 0 |
 
-### 2) 2-Bit comparator
+## 2) 2-Bit comparator
 
-#### Karnaugh maps:
+### Karnaugh maps:
 ![Tables](images/tabulky.png)
 
-#### Equations SoP and PoS:
+### Equations SoP and PoS:
 ![Functions](images/funkce2.png)
 
-#### EDA playground link:
+### EDA playground link:
 https://www.edaplayground.com/x/nu76
 
-### 3) 4-bit comparator
+## 3) 4-bit comparator
 
-#### VHDL architecture from design file:
+### VHDL architecture from design file:
 ```vhdl
 library ieee;
 use ieee.std_logic_1164.all;
@@ -73,7 +73,7 @@ begin
 end architecture Behavioral;
 ```
 
-#### VHDL stimulus process from testbench file:
+### VHDL stimulus process from testbench file:
 ```vhdl
 library ieee;
 use ieee.std_logic_1164.all;
@@ -154,8 +154,9 @@ begin
         assert ((s_B_greater_A = '1') and (s_B_equals_A = '0') and (s_B_less_A = '0'))
         report "Test failed for input combination: 0100, 0000" severity error;
         
+        -----------Chyba
         s_b <= "1111"; s_a <= "1111"; wait for 100 ns;
-        assert ((s_B_greater_A = '0') and (s_B_equals_A = '1') and (s_B_less_A = '0'))
+        assert ((s_B_greater_A = '1') and (s_B_equals_A = '0') and (s_B_less_A = '0'))
         report "Test failed for input combination: 1111, 1111" severity error;
         
         
@@ -170,7 +171,7 @@ begin
 end architecture testbench;
 ```
 
-#### Console with one reported error:
+### Console with one reported error:
 ```vhdl
 [2021-02-20 18:37:12 EST] ghdl -i design.vhd testbench.vhd  && ghdl -m  tb_comparator_2bit && ghdl -r  tb_comparator_2bit   --vcd=dump.vcd && sed -i 's/^U/X/g; s/^-/X/g; s/^H/1/g; s/^L/0/g' dump.vcd 
 analyze design.vhd
@@ -185,5 +186,5 @@ Finding VCD file...
 Done
 ```
 
-#### EDA playground link:
+### EDA playground link:
 https://www.edaplayground.com/x/dB69
