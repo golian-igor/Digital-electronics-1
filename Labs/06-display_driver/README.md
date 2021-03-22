@@ -1,9 +1,8 @@
 # 06-display_driver
 
 ### 1)Preparation tasks
-![Timing diagram](images/diagram.png)
-
 #### Timing diagram figure for displaying value 3.142:
+![Timing diagram](images/diagram.png)
 
 ### 2)Display driver
 
