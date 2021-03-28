@@ -2,3 +2,6 @@ Running: xsim.dir/tb_driver_7seg_4digits_behav/xsimk.exe -simmode gui -wdb tb_dr
 Design successfully loaded
 Design Loading Memory Usage: 5344 KB (Peak: 5344 KB)
 Design Loading CPU Usage: 15 ms
+Simulation completed
+Simulation Memory Usage: 5980 KB (Peak: 5980 KB)
+Simulation CPU Usage: 15 ms
