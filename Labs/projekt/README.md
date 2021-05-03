@@ -5,8 +5,8 @@
 ## Členové týmu:
 | **Jméno(ID)** | **GitHub** |
 | :-: | :-: |
-| Gmitter Jakub (220814)  | [Link](https://github.com/xgmitt00/Digital-electronics-1/tree/main/Labs) |
-| Golian Igor (223288)    | [Link](https://github.com/golian-igor/Digital-electronics-1/tree/main/Labs/projekt) |
+| Gmitter Jakub (220814)  | [Link](https://github.com/xgmitt00/Digital-electronics-1/tree/main/Labs)     |
+| Golian Igor (223288)    | [Link](https://github.com/golian-igor/Digital-electronics-1/tree/main/Labs)  |
 | Grenčík Dominik (220815)| [Link](https://github.com/DomikGrencik/Digital-electronics-1/tree/main/Labs) |
 | Hála David (220889)     | [Link](https://github.com/DavidHala123/Digital-electronics-1/tree/main/Labs) |
 
@@ -24,29 +24,82 @@ Deska je kompletní platforma pro vývoj digitálních obvodů. Založená na ne
 ![Image](images/deska.png)
 
 ![Image](images/popis.png)
-  
+
+![Image](images/piny.png)
+
+#### Připojení pinů:
+| **Pmod JA** | **Connection** | **Pmod JB** | **Connection** | **Pmod JC** |**Connection** | **Pmod JD** |**Connection** |
+| :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: |
+| Pin 1  | G13 | Pin 1  | E15 | Pin 1  | U12 | Pin 1  | D4 |
+| Pin 2  | B11 | Pin 2  | E16 | Pin 2  | V12 | Pin 2  | D3 |
+| Pin 3  | A11 | Pin 3  | D15 | Pin 3  | V10 | Pin 3  | F4 |
+| Pin 4  | D12 | Pin 4  | C15 | Pin 4  | V11 | Pin 4  | F3 |
+| Pin 7  | D13 | Pin 7  | J17 | Pin 7  | U14 | Pin 7  | E2 |
+| Pin 8  | B18 | Pin 8  | J18 | Pin 8  | V14 | Pin 8  | D2 |
+| Pin 9  | A18 | Pin 9  | K15 | Pin 9  | T13 | Pin 9  | H2 |
+| Pin 10 | K16 | Pin 10 | J15 | Pin 10 | U13 | Pin 10 | G2 |
+
+Senzor HC-SR04
+| **** | **Pmod JA** | **Connection** |
+| :-: | :-: | :-: |
+| Trig | Pin 1  | G13 |
+| Echo | Pin 7  | D13 |
+| VCC  | Pin 6  | VCC |
+| GND  | Pin 5  | GND |
+
+Bzučák
+| **** | **Pmod JA** | **Connection** |
+| :-: | :-: | :-: |
+| VCC | Pin 12 | VCC |
+| GND | Pin 11 | GND |
+
+LED bargraf
+| **** | **Pmod JD** | **Connection** |
+| :-: | :-: | :-: |
+| D1  | Pin 1 | D4  |
+| D2  | Pin 2 | D3  |
+| D3  | Pin 3 | F4  |
+| D4  | Pin 4 | F3  |
+| D5  | Pin 5 | E2  |
+| D6  | Pin 6 | D2  |
+| D7  | Pin 7 | H2  |
+| D8  | Pin 8 | G2  |
+| VCC | Pin 6 | VCC |
+| GND | Pin 5 | GND |
+
 ### Senzor HC-SR04
 Ultrazvukový senzor, který slouží především jako detektor překážek. Měřící vzdálenost je v rozsahu od 2cm do 4m. Obsahuje 4 pinový konektor se standartní roztečí 2,54mm. Piny: VCC, GND, TRIG, ECHO. Princip funkce senzoru: Nejprve vyšle 10us puls na pin Trigger, který následně vyšle 8 zvukových impulzů o frekvecni 40kHz. Poté co se vyslaný signál odrazí od překážky, vrátí se zpět na pin Echo. Pokud se překážka nachází nad 4m a signál se nevrátí do 38ms, pin Echo se nastaví automaticky na low.
 
 #### Princip:
 ![Image](images/senzor.png)
 
+#### Schéma:
+![Image](images/schema.senzor.png)
+
 ### Bzučák
-Pro zvukovou signalizaci pomocí PWM jsme zvolili jednoduchý piezo bzučák s napájecím napětím 3V - 5V.
-![Image](images/buzzer.png) 
+Pro zvukovou signalizaci pomocí PWM jsme zvolili jednoduchý piezo bzučák s napájecím napětím 5V.
+
+#### Schéma:
+![Image](images/schema.buzzer.png)
 
 ### LED bargraf
 Pro signalizaci jsme zvolili 8 segmentový LED bargraf.
-![Image](images/led.png) 
+![Image](images/led.png)
+
+#### Schéma:
+![Image](images/schema.led.png)
 
 ## Popis a simulace modulů VHDL:
 ### top
+
+![Image](images/top.png)
+
 ```vhdl
 entity top is
   Port ( 
            CLK100MHZ : in STD_LOGIC;
           
-           ja : in STD_LOGIC_VECTOR;     -- sensor in
+           ja : in STD_LOGIC_VECTOR (8-1 downto 0);     -- sensor in
            jb : out STD_LOGIC_VECTOR (8-1 downto 0);    -- ledbar
            jc : out STD_LOGIC_VECTOR (2-1 downto 0)    -- sensor out, buzzer           
   );
@@ -54,7 +107,7 @@ end top;
 
 architecture Behavioral of top is
 
-signal s_outputdistance : real := 0.0;
+signal s_outputdistance : integer := 0;
 signal s_clk : std_logic;
 
 begin
@@ -104,7 +157,7 @@ entity sensor is
            trig_o : out STD_LOGIC;          --signal that will trigger the sensor
            echo_i : in STD_LOGIC;           --signal from the sensor
            clk_i  : in std_LOGIC;           --clock
-           outputdistace_o : out real       --real value of distance
+           outputdistace_o : out integer       --real value of distance
                  
            );
 end sensor;
@@ -120,9 +173,9 @@ constant c_DELAY_60ms : unsigned(24 - 1 downto 0) := b"0101_1011_1000_1101_1000_
 constant c_DELAY_10us : unsigned(24 - 1 downto 0) := b"0000_0000_0000_0011_1110_1000";  --constant 10us
 constant c_ZERO       : unsigned(24 - 1 downto 0) := b"0000_0000_0000_0000_0000_0000";  --constant zero
 
-signal s_trig : std_logic;              --signal of trig_o
+
 signal s_count : integer := 0;          --counter of echo signal width
-signal s_outputdistance : real := 0.0;  --signal of outputdistace_o
+signal s_outputdistance : integer := 0;  --signal of outputdistace_o
 
 begin
 
@@ -169,14 +222,14 @@ if rising_edge (echo_i) then
     s_count <= 0;
 end if;
 
-if echo_i = '0' then
-    s_outputdistance <= Real(s_count)*0.0001*0.017241379310344827;
+if echo_i = '0' then    
+    s_outputdistance <= s_count/5800;  
 end if;
 
 end process p_get_echo;
 
 outputdistace_o <= s_outputdistance;
-trig_o <= s_trig;
+
 
 end Behavioral;
 ```
@@ -212,7 +265,7 @@ begin
     --------------------------------------------------------------------
     p_clk_gen : process
     begin
-        while now < 660 ms loop   -- 4 sec of simulation
+        while now < 4000 ms loop   -- 4 sec of simulation
             s_clk_100MHz <= '0';
             wait for c_CLK_100MHZ_PERIOD / 2;
             s_clk_100MHz <= '1';
@@ -228,7 +281,7 @@ begin
     begin
     s_echo <= '0';
     wait for c_60ms;
-    while now < 660 ms loop   -- 4 sec of simulation
+    while now < 4000 ms loop   -- 4 sec of simulation
             s_echo <= '0';
             wait for c_10us;
             s_echo <= '1';
@@ -251,7 +304,7 @@ end Behavioral;
 ```vhdl
 entity led_bar is
 Port ( 
-           outputdistance_i : in real;                          --real value of distance
+           outputdistance_i : in integer;                          --real value of distance
            led_bar_o : out std_logic_vector(8 - 1 downto 0)     --BUS for led bar                 
                  
            );
@@ -266,21 +319,21 @@ begin
 set_led_bar : process(outputdistance_i)
 begin
 
-if (outputdistance_i < 4.0 AND outputdistance_i >= 3.5) then
+if (outputdistance_i < 400 AND outputdistance_i >= 350) then
     s_led_bar <= "00000001";
-elsif (outputdistance_i < 3.5 AND outputdistance_i >= 3.0) then
+elsif (outputdistance_i < 350 AND outputdistance_i >= 300) then
     s_led_bar <= "00000011";
-elsif (outputdistance_i < 3.0 AND outputdistance_i >= 2.5) then
+elsif (outputdistance_i < 300 AND outputdistance_i >= 250) then
     s_led_bar <= "00000111";
-elsif (outputdistance_i < 2.5 AND outputdistance_i >= 2.0) then
+elsif (outputdistance_i < 250 AND outputdistance_i >= 200) then
     s_led_bar <= "00001111";
-elsif (outputdistance_i < 2.0 AND outputdistance_i >= 1.5) then
+elsif (outputdistance_i < 200 AND outputdistance_i >= 150) then
     s_led_bar <= "00011111";
-elsif (outputdistance_i < 1.5 AND outputdistance_i >= 1.0) then
+elsif (outputdistance_i < 150 AND outputdistance_i >= 100) then
     s_led_bar <= "00111111";
-elsif (outputdistance_i < 1.0 AND outputdistance_i >= 0.5) then
+elsif (outputdistance_i < 100 AND outputdistance_i >= 50) then
     s_led_bar <= "01111111";
-elsif (outputdistance_i < 0.5 AND outputdistance_i > 0.0) then
+elsif (outputdistance_i < 50 AND outputdistance_i > 0) then
     s_led_bar <= "11111111";
 else 
 s_led_bar <= "00000000";
@@ -302,7 +355,7 @@ end tb_led_bar;
 
 architecture Behavioral of tb_led_bar is
 
-    signal s_outputdistance : real;
+    signal s_outputdistance : integer;
 
 begin
 
@@ -316,37 +369,39 @@ uut_led_bar : entity work.led_bar
     --------------------------------------------------------------------
     p_stimulus : process
     begin
-        s_outputdistance <= 4.0;
+        s_outputdistance <= 425;
         wait for 200ms;
-        s_outputdistance <= 3.75;
+        s_outputdistance <= 400;
         wait for 200ms;
-        s_outputdistance <= 3.5;
+        s_outputdistance <= 375;
         wait for 200ms;
-        s_outputdistance <= 3.25;
+        s_outputdistance <= 350;
         wait for 200ms;
-        s_outputdistance <= 3.0;
+        s_outputdistance <= 325;
         wait for 200ms;
-        s_outputdistance <= 2.75;
+        s_outputdistance <= 300;
         wait for 200ms;
-        s_outputdistance <= 2.5;
+        s_outputdistance <= 275;
         wait for 200ms;
-        s_outputdistance <= 2.25;
+        s_outputdistance <= 250;
         wait for 200ms;
-        s_outputdistance <= 2.0;
+        s_outputdistance <= 225;
         wait for 200ms;
-        s_outputdistance <= 1.75;
+        s_outputdistance <= 200;
         wait for 200ms;
-        s_outputdistance <= 1.5;
+        s_outputdistance <= 175;
         wait for 200ms;
-        s_outputdistance <= 1.25;
+        s_outputdistance <= 150;
         wait for 200ms;
-        s_outputdistance <= 1.0;
+        s_outputdistance <= 125;
         wait for 200ms;
-        s_outputdistance <= 0.75;
+        s_outputdistance <= 100;
         wait for 200ms;
-        s_outputdistance <= 0.5;
+        s_outputdistance <= 75;
         wait for 200ms;
-        s_outputdistance <= 0.25;
+        s_outputdistance <= 50;
+        wait for 200ms;
+        s_outputdistance <= 25;
    
         
         wait;
@@ -450,7 +505,7 @@ end Behavioral;
 ```vhdl
 entity buzzer is
 Port ( 
-           outputdistance_i : in real;          --real value of distance              
+           outputdistance_i : in integer;          --real value of distance              
            clk_buzz_i : in std_LOGIC := '0';    --transformed clock input
            buzzer_o : out std_logic             --buzzer output
                  
@@ -479,21 +534,21 @@ end process buzzer;
 buzzer_freq : process(outputdistance_i)
 begin
 
-if (outputdistance_i < 4.0 AND outputdistance_i > 3.5) then
+if (outputdistance_i < 400 AND outputdistance_i > 350) then
     s_buzzer_freq <= 1050us;
-elsif (outputdistance_i < 3.5 AND outputdistance_i > 3.0) then
+elsif (outputdistance_i < 350 AND outputdistance_i > 300) then
     s_buzzer_freq <= 900us;
-elsif (outputdistance_i < 3.0 AND outputdistance_i > 2.5) then
+elsif (outputdistance_i < 300 AND outputdistance_i > 250) then
     s_buzzer_freq <= 750us;
-elsif (outputdistance_i < 2.5 AND outputdistance_i > 2.0) then
+elsif (outputdistance_i < 250 AND outputdistance_i > 200) then
     s_buzzer_freq <= 600us;
-elsif (outputdistance_i < 2.0 AND outputdistance_i > 1.5) then
+elsif (outputdistance_i < 200 AND outputdistance_i > 150) then
     s_buzzer_freq <= 450us;
-elsif (outputdistance_i < 1.5 AND outputdistance_i > 1.0) then
+elsif (outputdistance_i < 150 AND outputdistance_i > 100) then
     s_buzzer_freq <= 300us;
-elsif (outputdistance_i < 1.0 AND outputdistance_i > 0.5) then
+elsif (outputdistance_i < 100 AND outputdistance_i > 50) then
     s_buzzer_freq <= 150us;
-elsif (outputdistance_i < 0.5 AND outputdistance_i > 0.0) then
+elsif (outputdistance_i < 50 AND outputdistance_i > 0) then
     s_buzzer_freq <= 0us;
 end if;
 
@@ -513,7 +568,7 @@ end tb_buzzer;
 architecture Behavioral of tb_buzzer is
 
     constant c_buzz_freq : time := 525 us;
-    signal s_outputdistance : real;
+    signal s_outputdistance : integer;
     signal s_clk_buzz : std_logic;
 
 begin
@@ -540,37 +595,39 @@ begin
     --------------------------------------------------------------------
     p_stimulus : process
     begin
-        s_outputdistance <= 4.0;
-        wait for 200ms;
-        s_outputdistance <= 3.75;
-        wait for 200ms;
-        s_outputdistance <= 3.5;
-        wait for 200ms;
-        s_outputdistance <= 3.25;
-        wait for 200ms;
-        s_outputdistance <= 3.0;
-        wait for 200ms;
-        s_outputdistance <= 2.75;
-        wait for 200ms;
-        s_outputdistance <= 2.5;
-        wait for 200ms;
-        s_outputdistance <= 2.25;
-        wait for 200ms;
-        s_outputdistance <= 2.0;
-        wait for 200ms;
-        s_outputdistance <= 1.75;
-        wait for 200ms;
-        s_outputdistance <= 1.5;
-        wait for 200ms;
-        s_outputdistance <= 1.25;
-        wait for 200ms;
-        s_outputdistance <= 1.0;
-        wait for 200ms;
-        s_outputdistance <= 0.75;
-        wait for 200ms;
-        s_outputdistance <= 0.5;
-        wait for 200ms;
-        s_outputdistance <= 0.25; 
+        s_outputdistance <= 425;
+        wait for 2ms;
+        s_outputdistance <= 400;
+        wait for 2ms;
+        s_outputdistance <= 375;
+        wait for 2ms;
+        s_outputdistance <= 350;
+        wait for 2ms;
+        s_outputdistance <= 325;
+        wait for 2ms;
+        s_outputdistance <= 300;
+        wait for 5ms;
+        s_outputdistance <= 275;
+        wait for 5ms;
+        s_outputdistance <= 250;
+        wait for 5ms;
+        s_outputdistance <= 225;
+        wait for 5ms;
+        s_outputdistance <= 200;
+        wait for 5ms;
+        s_outputdistance <= 175;
+        wait for 5ms;
+        s_outputdistance <= 150;
+        wait for 5ms;
+        s_outputdistance <= 125;
+        wait for 5ms;
+        s_outputdistance <= 100;
+        wait for 5ms;
+        s_outputdistance <= 75;
+        wait for 5ms;
+        s_outputdistance <= 50;
+        wait for 5ms;
+        s_outputdistance <= 25; 
     
         
         wait;
@@ -586,9 +643,10 @@ end Behavioral;
 ![Image](images/tb.buzzer.png)
 
 ## Video:
-[Link](https://www.youtube.com/watch?v=kZTGfLYYYpE)
+[Link](https://www.youtube.com/watch?v=UANIZdxbZUs)
 
 ## Použité zdroje:
-1) Deska - [A7-100T](https://reference.digilentinc.com/reference/programmable-logic/arty-a7/reference-manual)
-2) Ultrazvukový senzor - [HC-SR04](https://cdn.sparkfun.com/datasheets/Sensors/Proximity/HCSR04.pdf)
+1) Deska - (https://reference.digilentinc.com/reference/programmable-logic/arty-a7/reference-manual)
+2) Ultrazvukový senzor - (https://cdn.sparkfun.com/datasheets/Sensors/Proximity/HCSR04.pdf)
+3) Informace - (https://github.com/tomas-fryza/Digital-electronics-1)
 
