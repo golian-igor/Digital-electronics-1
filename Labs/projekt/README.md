@@ -18,7 +18,7 @@ Cílem projektu je vytvořit program  parkovací asistent, který bude napsaný 
 
 ## Popis Hardwaru:
 ### Deska A7-100T
-Deska je kompletní platforma pro vývoj digitálních obvodů. Založená na nejnovějším poli FPGA od společnosti Artix-7 ™. Díky velkému vysokokapacitnímu FPGA, velkorysým externím pamětím, kolekci USB, Ethernetu a dalších portů může Nexys A7 hostit designy od úvodních kombinačních obvodů až po výkonné vestavěné procesory.
+Deska je kompletní platforma pro vývoj digitálních obvodů. Založená na nejnovějším poli FPGA od společnosti Artix-7 ™. Díky velkému vysokokapacitnímu FPGA, velkorysým externím pamětím, kolekci USB, Ethernetu a dalších portů může A7 hostit designy od úvodních kombinačních obvodů až po výkonné vestavěné procesory.
 
 #### Popis Desky:
 ![Image](images/deska.png)
@@ -27,7 +27,7 @@ Deska je kompletní platforma pro vývoj digitálních obvodů. Založená na ne
 
 ![Image](images/piny.png)
 
-#### Připojení pinů:
+#### Připojení pinů
 | **Pmod JA** | **Connection** | **Pmod JB** | **Connection** | **Pmod JC** |**Connection** | **Pmod JD** |**Connection** |
 | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: |
 | Pin 1  | G13 | Pin 1  | E15 | Pin 1  | U12 | Pin 1  | D4 |
@@ -39,22 +39,22 @@ Deska je kompletní platforma pro vývoj digitálních obvodů. Založená na ne
 | Pin 9  | A18 | Pin 9  | K15 | Pin 9  | T13 | Pin 9  | H2 |
 | Pin 10 | K16 | Pin 10 | J15 | Pin 10 | U13 | Pin 10 | G2 |
 
-Senzor HC-SR04
-| **** | **Pmod JA** | **Connection** |
+#### Senzor HC-SR04
+| | **Pmod JA** | **Connection** |
 | :-: | :-: | :-: |
 | Trig | Pin 1  | G13 |
 | Echo | Pin 7  | D13 |
 | VCC  | Pin 6  | VCC |
 | GND  | Pin 5  | GND |
 
-Bzučák
-| **** | **Pmod JA** | **Connection** |
+#### Bzučák
+| | **Pmod JA** | **Connection** |
 | :-: | :-: | :-: |
 | VCC | Pin 12 | VCC |
 | GND | Pin 11 | GND |
 
-LED bargraf
-| **** | **Pmod JD** | **Connection** |
+#### LED bargraf
+| | **Pmod JD** | **Connection** |
 | :-: | :-: | :-: |
 | D1  | Pin 1 | D4  |
 | D2  | Pin 2 | D3  |
@@ -70,23 +70,23 @@ LED bargraf
 ### Senzor HC-SR04
 Ultrazvukový senzor, který slouží především jako detektor překážek. Měřící vzdálenost je v rozsahu od 2cm do 4m. Obsahuje 4 pinový konektor se standartní roztečí 2,54mm. Piny: VCC, GND, TRIG, ECHO. Princip funkce senzoru: Nejprve vyšle 10us puls na pin Trigger, který následně vyšle 8 zvukových impulzů o frekvecni 40kHz. Poté co se vyslaný signál odrazí od překážky, vrátí se zpět na pin Echo. Pokud se překážka nachází nad 4m a signál se nevrátí do 38ms, pin Echo se nastaví automaticky na low.
 
-#### Princip:
+#### Princip
 ![Image](images/senzor.png)
 
-#### Schéma:
+#### Schéma
 ![Image](images/schema.senzor.png)
 
 ### Bzučák
 Pro zvukovou signalizaci pomocí PWM jsme zvolili jednoduchý piezo bzučák s napájecím napětím 5V.
 
-#### Schéma:
+#### Schéma
 ![Image](images/schema.buzzer.png)
 
 ### LED bargraf
 Pro signalizaci jsme zvolili 8 segmentový LED bargraf.
 ![Image](images/led.png)
 
-#### Schéma:
+#### Schéma
 ![Image](images/schema.led.png)
 
 ## Popis a simulace modulů VHDL:
@@ -297,7 +297,7 @@ begin
 end Behavioral;
 ```
 
-### tb_senzor simulace
+### Senzor simulace
 ![Image](images/tb.senzor.png)
 
 ### led_bar
@@ -412,7 +412,7 @@ uut_led_bar : entity work.led_bar
 end Behavioral;
 ```
 
-### tb_led_bar
+### Led bar simulace
 ![Image](images/tb.ledbar.png)
 
 ### clock_buzzer
@@ -498,7 +498,7 @@ begin
 end Behavioral;
 ```
 
-### tb_clock_buzzer simulace
+### Clock buzzer simulace
 ![Image](images/tb.clockbuzzer.png)
 
 ### buzzer
@@ -639,14 +639,15 @@ begin
 end Behavioral;
 ```
 
-### tb_buzzer simulace
+### Buzzer simulace
 ![Image](images/tb.buzzer.png)
 
 ## Video:
 [Link](https://www.youtube.com/watch?v=UANIZdxbZUs)
 
 ## Použité zdroje:
-1) Deska - (https://reference.digilentinc.com/reference/programmable-logic/arty-a7/reference-manual)
-2) Ultrazvukový senzor - (https://cdn.sparkfun.com/datasheets/Sensors/Proximity/HCSR04.pdf)
-3) Informace - (https://github.com/tomas-fryza/Digital-electronics-1)
+1) Deska - https://reference.digilentinc.com/reference/programmable-logic/arty-a7/reference-manual
+2) Ultrazvukový senzor - https://cdn.sparkfun.com/datasheets/Sensors/Proximity/HCSR04.pdf
+3) Bzučák - https://www.pantechsolutions.net/blog/buzzer-interface-with-fpga/
+4) Informace - https://github.com/tomas-fryza/Digital-electronics-1
 
