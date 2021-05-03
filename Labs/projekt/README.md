@@ -40,32 +40,33 @@ Deska je kompletní platforma pro vývoj digitálních obvodů. Založená na ne
 | Pin 10 | K16 | Pin 10 | J15 | Pin 10 | U13 | Pin 10 | G2 |
 
 #### Senzor HC-SR04
-| | **Pmod JA** | **Connection** |
+| | **Pmod** | **Connection** |
 | :-: | :-: | :-: |
-| Trig | Pin 1  | G13 |
-| Echo | Pin 7  | D13 |
-| VCC  | Pin 6  | VCC |
-| GND  | Pin 5  | GND |
+| Trig | JC - Pin 1 | U12 |
+| Echo | JA - Pin 7 | G13 |
+| VCC  | 5V         | External source |
+| GND  | GND        | External source |
 
 #### Bzučák
-| | **Pmod JA** | **Connection** |
+| | **Pmod** | **Connection** |
 | :-: | :-: | :-: |
-| VCC | Pin 12 | VCC |
-| GND | Pin 11 | GND |
+| Signal | JC - Pin 2 | V12 |
+| VCC    | JC - Pin 6 | VCC |
+| GND    | JC - Pin 5 | GND |
 
 #### LED bargraf
-| | **Pmod JD** | **Connection** |
+| | **Pmod** | **Connection** |
 | :-: | :-: | :-: |
-| D1  | Pin 1 | D4  |
-| D2  | Pin 2 | D3  |
-| D3  | Pin 3 | F4  |
-| D4  | Pin 4 | F3  |
-| D5  | Pin 5 | E2  |
-| D6  | Pin 6 | D2  |
-| D7  | Pin 7 | H2  |
-| D8  | Pin 8 | G2  |
-| VCC | Pin 6 | VCC |
-| GND | Pin 5 | GND |
+| LED1 | JB - Pin 1  | E15 |
+| LED2 | JB - Pin 2  | E16 |
+| LED3 | JB - Pin 3  | D15 |
+| LED4 | JB - Pin 4  | C15 |
+| LED5 | JB - Pin 7  | J17 |
+| LED6 | JB - Pin 8  | J18 |
+| LED7 | JB - Pin 9  | K15 |
+| LED8 | JB - Pin 10 | J15 |
+| VCC  | JB - Pin 6  | VCC |
+| GND  | JB - Pin 5  | GND |
 
 ### Senzor HC-SR04
 Ultrazvukový senzor, který slouží především jako detektor překážek. Měřící vzdálenost je v rozsahu od 2cm do 4m. Obsahuje 4 pinový konektor se standartní roztečí 2,54mm. Piny: VCC, GND, TRIG, ECHO. Princip funkce senzoru: Nejprve vyšle 10us puls na pin Trigger, který následně vyšle 8 zvukových impulzů o frekvecni 40kHz. Poté co se vyslaný signál odrazí od překážky, vrátí se zpět na pin Echo. Pokud se překážka nachází nad 4m a signál se nevrátí do 38ms, pin Echo se nastaví automaticky na low.
@@ -101,7 +102,7 @@ entity top is
           
            ja : in STD_LOGIC_VECTOR (8-1 downto 0);     -- sensor in
            jb : out STD_LOGIC_VECTOR (8-1 downto 0);    -- ledbar
-           jc : out STD_LOGIC_VECTOR (2-1 downto 0)    -- sensor out, buzzer           
+           jc : out STD_LOGIC_VECTOR (2-1 downto 0)     -- sensor out, buzzer           
   );
 end top;
 
@@ -157,7 +158,7 @@ entity sensor is
            trig_o : out STD_LOGIC;          --signal that will trigger the sensor
            echo_i : in STD_LOGIC;           --signal from the sensor
            clk_i  : in std_LOGIC;           --clock
-           outputdistace_o : out integer       --real value of distance
+           outputdistace_o : out integer    --real value of distance
                  
            );
 end sensor;
@@ -174,7 +175,7 @@ constant c_DELAY_10us : unsigned(24 - 1 downto 0) := b"0000_0000_0000_0011_1110_
 constant c_ZERO       : unsigned(24 - 1 downto 0) := b"0000_0000_0000_0000_0000_0000";  --constant zero
 
 
-signal s_count : integer := 0;          --counter of echo signal width
+signal s_count : integer := 0;           --counter of echo signal width
 signal s_outputdistance : integer := 0;  --signal of outputdistace_o
 
 begin
@@ -304,7 +305,7 @@ end Behavioral;
 ```vhdl
 entity led_bar is
 Port ( 
-           outputdistance_i : in integer;                          --real value of distance
+           outputdistance_i : in integer;                       --real value of distance
            led_bar_o : out std_logic_vector(8 - 1 downto 0)     --BUS for led bar                 
                  
            );
@@ -505,7 +506,7 @@ end Behavioral;
 ```vhdl
 entity buzzer is
 Port ( 
-           outputdistance_i : in integer;          --real value of distance              
+           outputdistance_i : in integer;       --real value of distance              
            clk_buzz_i : in std_LOGIC := '0';    --transformed clock input
            buzzer_o : out std_logic             --buzzer output
                  
